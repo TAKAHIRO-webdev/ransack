@@ -1,0 +1,53 @@
+<style>
+  table, th, td {
+  border: 1px solid black;
+}
+</style>
+
+<h1>Users</h1>
+
+<%= search_form_for @q do |f| %>
+
+  <%= f.label :name_or_address, "keyword" %>
+  <%= f.search_field :name_or_address_cont %>
+  <br />
+  
+  <%= f.label :age %>
+  <%= f.number_field :age_gteq %>
+  以上～
+  <%= f.number_field :age_lt %>
+  未満
+  <br />
+  
+  <%= f.label :sex %>
+  <%= f.radio_button :sex_eq, '', {:checked => true} %>
+  指定なし
+  <%= f.radio_button :sex_eq, 1 %>
+  男性
+  <%= f.radio_button :sex_eq, 2 %>
+  女性
+  
+  <%= f.submit "検索" %>
+<% end %>
+
+
+
+
+
+<table>
+  <tr>
+    <th>name</th>
+    <th>age</th>
+    <th>sex</th>
+    <th>address</th>
+  </tr>
+
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td> 
+    <td><%= user.age %></td>
+    <td><%= user.sex %></td>
+    <td><%= user.address %></td>
+  <% end %>
+  </tr>
+</table>
